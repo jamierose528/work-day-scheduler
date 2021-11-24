@@ -1,7 +1,7 @@
 var currentDay = $("#currentDay")
 
 // Timer
-var now = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+var now = moment().format("dddd, MMMM Do YYYY, HH:mm:ss");
 console.log(currentDay)
 
 currentDay.text(now)
@@ -11,7 +11,7 @@ setInterval(() => {
 }, 1000);
 
 // each timeblock is color coded to indicate whether it is in the past, present, or future
-var timeBlock = function () {
+var addTask = function () {
     $(".row").each(function() {
         var time = $(this).attr("data-time").replace("time", "");
         if (time < currentDay) {
@@ -23,4 +23,13 @@ var timeBlock = function () {
         }
     })
 }
-timeBlock();
+addTask();
+
+// add text to calendar
+var enterEvent = ( timeBlock, task) => {
+    $(`[data-time = "${timeBlock}'] .description`).append(task);
+};
+
+var loadTodo = () => {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+}
