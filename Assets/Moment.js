@@ -32,4 +32,20 @@ var enterEvent = ( timeBlock, task) => {
 
 var loadTodo = () => {
     tasks = JSON.parse(localStorage.getItem("tasks"));
+if (!tasks) {
+    tasks = {
+        07: "",
+        08: "",
+        09: "",
+        10: "",
+        11: "",
+        12: "",
+        13: "",
+        14: "",
+        15: "",
+        16: "",
+        17: "",
+        18: "", 
+    };
+}
 }
