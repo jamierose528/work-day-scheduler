@@ -54,34 +54,49 @@ var loadTodo = () => {
   $.each(tasis, function (timeBlcok, value) {
     createTask(timeBlock, value);
   });
-  // save to localstorage
-  var saveList = () => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  };
-
-  //   event listener
-  $(".container").on("click", ".description", function () {
-    $(".container").on("blur", "textarea", function () {
-      var data = $(this).closestt(".row").attr("data-time");
-
-      var taskValue = $(this).val().trim();
-      createTask(data, taskValue);
-
-      var descrition = $("<span>").addClass("col-8 col-sm-9 description");
-      $("testarea").replaceWith(descrition);
-      description.textContent = taskValue;
-
-      createTask(data, taskValue);
-      tasks[data] = taskValue;
-      auditTasks();
-      return saveList();
-    });
-
-    // enter event
-    var enterText = $("<text>")
-      .addClass("form-control col-8 col-sm-9 description")
-      .val(text);
-    $(this).replaceWith(enterText);
-    enterText.trigger("focus");
-  });
 };
+// save to localstorage
+var saveList = () => {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+};
+
+//   event listener
+$(".container").on("click", ".description", function () {
+  $(".container").on("blur", "textarea", function () {
+    var data = $(this).closestt(".row").attr("data-time");
+
+    var taskValue = $(this).val().trim();
+    createTask(data, taskValue);
+
+    var descrition = $("<span>").addClass("col-8 col-sm-9 description");
+    $("textarea").replaceWith(descrition);
+    description.textContent = taskValue;
+
+    createTask(data, taskValue);
+    tasks[data] = taskValue;
+    auditTasks();
+    return saveList();
+  });
+
+  // enter event
+  var enterText = $("<text>")
+    .addClass("form-control col-8 col-sm-9 description")
+    .val(text);
+  $(this).replaceWith(enterText);
+  enterText.trigger("focus");
+});
+//   save button
+$(".container").on("click", "saveBtn", function () {
+  var dataID = $(this).closest(".row").attr("data-time");
+
+  var tastTxt = $(`[data-time="${dataID}"] .description`).val();
+
+  var descriptionEL = $("<span>").addClass("col-8 col-sm-9 description");
+  $("textarea").replaceWith(descriptionEL);
+  descriptionEL.textContent = taskTxt;
+
+  createTask(dataID, tastTxt);
+  tasks[dataID] = tastTxt;
+  auditTasks();
+  return saveList();
+});
