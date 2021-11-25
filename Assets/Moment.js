@@ -66,6 +66,10 @@ var loadTodo = () => {
 
       var taskValue = $(this).val().trim();
       createTask(data, taskValue);
+
+      var descrition = $("<span>").addClass("col-8 col-sm-9 description");
+      $("testarea").replaceWith(descrition);
+      RTCSessionDescription.textContent = taskValue;
     });
   });
 };
