@@ -78,8 +78,10 @@ var loadTodo = () => {
     });
 
     // enter event
-    var enterEvent = $("<text>")
+    var enterText = $("<text>")
       .addClass("form-control col-8 col-sm-9 description")
       .val(text);
+    $(this).replaceWith(enterText);
+    enterText.trigger("focus");
   });
 };
