@@ -69,7 +69,17 @@ var loadTodo = () => {
 
       var descrition = $("<span>").addClass("col-8 col-sm-9 description");
       $("testarea").replaceWith(descrition);
-      RTCSessionDescription.textContent = taskValue;
+      description.textContent = taskValue;
+
+      createTask(data, taskValue);
+      tasks[data] = taskValue;
+      auditTasks();
+      return saveList();
     });
+
+    // enter event
+    var enterEvent = $("<text>")
+      .addClass("form-control col-8 col-sm-9 description")
+      .val(text);
   });
 };
